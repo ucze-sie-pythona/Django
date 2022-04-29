@@ -1,7 +1,7 @@
 from django.shortcuts import render
-#importujemy klasę odpowiedzialną za budowanie nowej strony
 from django.http import HttpResponse
+from .models import Roslina
 
-#definiujemy metodę, którą przekażemy do urls.py
 def nowa_stona(request):
-    return HttpResponse("To jest nowa zakładka w naszej aplikacji")
+    wszystkie_rosliny = Roslina.objects.all() #wszytskie obiekty utworzone w Django Administrations będą przypisane do tej zmiennej
+    return render(request, "nowy_szablon.html", {"dodatkowa_tresc":wszystkie_rosliny})
