@@ -1,0 +1,13 @@
+{% extends 'home.html' %}
+{% load bootstrap %} <!--dodajemy-->
+{% block tytul_strony %} Rośliny {% endblock %}
+
+    {% block strona %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token  %}
+        {{ form|bootstrap }}
+        {{ form_nazwa|bootstrap }}
+        <button type="submit">Dodaj roślinę</button>
+    </form>
+{% endblock %}

@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='roslina',
             name='obraz',
-            field=models.ImageField(null=True, upload_to='zdjęcia'),
+            field=models.ImageField(null=True, upload_to='zdjecia'),
         ),
         migrations.AddField(
             model_name='roslina',

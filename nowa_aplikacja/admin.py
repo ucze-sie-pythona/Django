@@ -1,6 +1,6 @@
 from django.contrib import admin
 #importowanie klasy Roslina z pliku models.py
-from .models import Roslina
+from .models import Roslina, Nazwa_lac
 
 # zamiast admin.site.register(Roslina) napiszemy:
 @admin.register(Roslina) #@jest to dekorator
@@ -10,3 +10,4 @@ class RoslinaAdmin(admin.ModelAdmin):
     search_fields = ("nazwa_rosliny",)
 
 
+admin.site.register(Nazwa_lac)

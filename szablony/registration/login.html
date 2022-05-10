@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+{% load bootstrap %} <!--dodajemy-->
+{% block tytul_strony %} Logowanie {% endblock %}
+
+    {% block strona %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit">Zaloguj się</button>
+    </form>
+{% endblock %}

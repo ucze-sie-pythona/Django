@@ -1,15 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-  <h2>To będzie szablon mojej strony o roślinach.</h2>
+{% extends 'home.html' %}
+{% block tytul_strony %} Rośliny {% endblock %}
 
+    {% block strona %}
+    {% if user.is_authenticated %}
+    <p>Cześć, {{ user.username }}!</p>
+    <a href="{% url 'wylogowanie' %}">Wyloguj się</a>
+    {% else %}
+    <a href="{% url 'logowanie'  %}">Zaloguj się</a>
+    {% endif %}
+
+    <hr>
+    <p>Łączna ilość wszystkich roślin w bazie danych: {{ dodatkowa_tresc|length }}</p>
+    <hr>
     {% for i in dodatkowa_tresc %}
-        <p>{{ i }} potrzebuje na wykiełkowanie nasiona {{ i.dni_siewki }}</p>
+        <p>{{ i }} ({{ i.dodatkowe_info }}) potrzebuje na wykiełkowanie nasiona {{ i.dni_siewki }}</p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'edytuj_rosline' i.id %}">Edytuj roślinę</a>
+        <a href="{% url 'usun_rosline' i.id %}">Usuń roślinę</a>
+        {% endif %}
     {% endfor %}
-
-</body>
-</html>
+    <hr>
+    {% for i in dodatkowa_tresc %}
+        {% if i.dni_siewki < 20 %}
+            <p>{{ i.nazwa_rosliny }} szybko kiełkuje z nasion.</p>
+        {% endif %}
+    {% endfor %}
+    <hr>
+    {% if user.is_authenticated %}
+    <a href="{% url 'dodaj' %}">Dodaj roślinę</a>
+    {% endif %}
+{% endblock %}

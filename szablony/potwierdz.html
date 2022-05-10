@@ -1,0 +1,13 @@
+{% extends 'home.html' %}
+{% block tytul_strony %} Rośliny {% endblock %}
+
+{% block strona %}
+    <h1>Czy na pewno chcesz usunąć {{ roslina }} ?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Usuń roślinę</button>
+    </form>
+{% endblock %}
+
+
+
